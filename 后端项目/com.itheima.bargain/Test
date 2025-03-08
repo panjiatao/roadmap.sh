@@ -1,0 +1,9 @@
+package com.itheima.bargain;
+
+public class Test {
+    public static void main(String[] args) {
+        Bargain bargain = new Bargain();
+        bargain.start();
+
+    }
+}
