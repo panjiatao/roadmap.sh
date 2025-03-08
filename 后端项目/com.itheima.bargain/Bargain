@@ -1,0 +1,97 @@
+package com.itheima.bargain;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Bargain {
+    private ArrayList<Account> accounts = new ArrayList<>();
+    private Scanner sc = new Scanner(System.in);
+    private Random r =new Random();
+
+    public void start(){
+//        Bargain bargain = new Bargain();
+        String name = "光头强";
+        int a = 0;
+        int b = 80;
+        int count = 0;
+
+        while (true) {
+            System.out.println("*********************************");
+            System.out.println("*********************************");
+//        System.out.println("点击要砍的用户");
+
+            System.out.println("已砍" + a + "元，还差" + b + "元");
+
+/*        System.out.println(accounts.size());
+        System.out.println("砍价用户如下：");
+
+        bargain.look();*/
+            System.out.println("----------> 砍价帮 <----------");
+//            System.out.println(accounts.size());
+            look();
+            System.out.println("是否砍价（输入砍价用户名）:");
+            String meName = sc.next();
+//            bargain.look();
+//            System.out.println(bargain.judge(meName));
+            if(judge(meName) == true){
+
+                if(count == 10){
+                    int price = b;
+                    System.out.println("砍价成功：" + meName + "为光头强砍掉" + price);
+                    System.out.println("砍价结束");
+                    return;
+                }
+                Account account = new Account();
+                account.setName(meName);
+                    int price =r.nextInt(b)+1 ;
+                    account.setPrice(price);
+                    System.out.println("砍价成功：" + meName + "为光头强砍掉" + price);
+                    a = price;
+                    b = b - price;
+                    if(b == 0){
+                        System.out.println("砍价结束");
+                        return;
+                    }
+                    accounts.add(account);
+
+                    count++;
+                }
+            else{
+                System.out.println("用户已经砍过价，不能重复~");
+            }
+        }
+    }
+
+    public void look() {
+        Account account = new Account();
+        for (int i = 0; i < accounts.size(); i++) {
+            account = accounts.get(i);
+            System.out.println(account.getName() + "----- :砍掉" + account.getPrice() + "元" );
+        }
+    }
+
+    /**用户注册*/
+/*    public void add(){
+        Account account = new Account();
+        System.out.println("==欢迎来到注册界面==");
+        System.out.println("请输入用户名：");
+        String name = sc.next();
+        account.setName(name);
+        account.setPriceAll(80);
+        accounts.add(account);
+        System.out.println("注册成功~");
+    }*/
+
+    /**判断用户是否存在*/
+    public boolean judge(String name){
+        Account account = new Account();
+        for (int i = 0; i <accounts.size(); i++) {
+            account = accounts.get(i);
+            if(account.getName().equals(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
