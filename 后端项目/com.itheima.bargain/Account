@@ -1,0 +1,40 @@
+package com.itheima.bargain;
+
+public class Account {
+    private String name;
+    private int price;
+    private int  priceAll;
+
+    public Account() {
+    }
+
+    public Account(String name, int price, int priceAll) {
+        this.name = name;
+        this.price = price;
+        this.priceAll = priceAll;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int  getPriceAll() {
+        return priceAll;
+    }
+
+    public void setPriceAll(int priceAll) {
+        this.priceAll = priceAll;
+    }
+}
