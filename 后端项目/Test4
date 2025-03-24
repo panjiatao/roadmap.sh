@@ -1,0 +1,61 @@
+package com.itheima.file;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test41 {
+    public static void main(String[] args) {
+        try(
+                Writer f1 = new FileWriter( "stu.txt");
+                BufferedWriter bw = new BufferedWriter(f1);
+                Reader f2 = new FileReader("stu.txt");
+                BufferedReader br = new BufferedReader(f2);
+
+            ) {
+//            给文件添加学生姓名
+            bw.write("刀锋");
+            bw.newLine();
+            bw.write("钢铁侠");
+            bw.newLine();
+            bw.write("雷神");
+            bw.newLine();
+            bw.write("绿巨人");
+            bw.newLine();
+            bw.flush();//没加，集合为空
+
+            List<String> list = new ArrayList<>();
+            String len;
+            while((len = br.readLine()) != null){
+                list.add(len);
+            }
+            System.out.println("--从文件里面获取数据到list集合中去,集合内容如下--");
+            System.out.println(list.toString());
+            Random r = new Random();
+//            随机获取一个需要删除的学生的索引
+
+            int number = 0;
+            if (list.size() > 0) {
+                number = r.nextInt(list.size());
+                String name = list.get(number);
+                list.remove(name);
+                System.out.println("--删除索引学生后的集合如下--");
+                System.out.println(list.toString());
+                for(String s : list){
+                    bw.write(s);
+                    bw.newLine();
+                }
+
+            }else{
+                System.out.println("文件为空，无法删除");
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
